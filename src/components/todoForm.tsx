@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -22,7 +21,7 @@ export default function TodoForm({ onAdd }: ITodoFormProps) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Nouvelle tâche"
-        className="border p-2 flex-grow"
+        className="border p-2 flex-grow bg-gray-50"
       />
       <button type="submit" className="bg-blue-500 text-white px-4 py-2">
         Ajouter
@@ -30,4 +29,3 @@ export default function TodoForm({ onAdd }: ITodoFormProps) {
     </form>
   );
 }
-

@@ -43,3 +43,11 @@ export function deleteTodo(id: number): void {
   const updatedTodos = todos.filter((todo) => todo.id !== id);
   saveTodos(updatedTodos);
 }
+
+export function updateTodo(id: number, newTitle: string): void {
+  const todos = getStoredTodos();
+  const updatedTodos = todos.map((todo) =>
+    todo.id === id ? { ...todo, title: newTitle } : todo
+  );
+  saveTodos(updatedTodos);
+}
