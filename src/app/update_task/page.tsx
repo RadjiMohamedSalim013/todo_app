@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { getTodos } from "@/geteways/todo";
 import { ITodo } from "@/interfaces/todo";
 
+export const dynamic = "force-dynamic"; // Force la page à être rendue côté client
+
 export default function UpdateTaskPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -12,19 +14,14 @@ export default function UpdateTaskPage() {
 
   const [title, setTitle] = useState("");
   const [todo, setTodo] = useState<ITodo | null>(null);
-  const [loading, setLoading] = useState(true);  
+
   useEffect(() => {
-    if (id) {
-      const todos = getTodos();
-      const currentTodo = todos.find((t) => t.id.toString() === id);
-      if (currentTodo) {
-        setTodo(currentTodo);
-        setTitle(currentTodo.title);
-      } else {
-        setTodo(null);  
-      }
+    const todos = getTodos();
+    const current = todos.find((t) => t.id.toString() === id);
+    if (current) {
+      setTodo(current);
+      setTitle(current.title);
     }
-    setLoading(false);  
   }, [id]);
 
   const handleUpdate = () => {
@@ -40,13 +37,7 @@ export default function UpdateTaskPage() {
     router.push("/task");
   };
 
-  if (loading) {
-    return <p className="text-center mt-10">Chargement...</p>; 
-  }
-
-  if (!todo) {
-    return <p className="text-center mt-10">Tâche introuvable</p>; 
-  }
+  if (!todo) return <p className="text-center mt-10">Tâche introuvable</p>;
 
   return (
     <div className="max-w-md mx-auto mt-10 px-6 py-8 bg-white shadow-lg rounded-lg">
