@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import { getTodos } from "@/geteways/todo";
 import { ITodo } from "@/interfaces/todo";
 
-export const dynamic = "force-dynamic"; // Force la page à être rendue côté client
-
 export default function UpdateTaskPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -33,37 +31,23 @@ export default function UpdateTaskPage() {
     router.push("/task");
   };
 
-  const handleCancel = () => {
-    router.push("/task");
-  };
-
-  if (!todo) return <p className="text-center mt-10">Tâche introuvable</p>;
+  if (!todo) return <p className="text-center mt-10 text-gray-600">Tâche introuvable</p>;
 
   return (
-    <div className="max-w-md mx-auto mt-10 px-6 py-8 bg-white shadow-lg rounded-lg">
-      <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
-        Modifier la tâche
-      </h1>
+    <div className="max-w-md mx-auto mt-10 px-4 py-20 bg-gray-50 rounded-lg shadow-md">
+      <h1 className="text-xl font-bold mb-4 text-gray-900">Modifier la tâche</h1>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-6"
-        placeholder="Titre de la tâche"
+        className="w-full p-2 border border-emerald-500 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+        placeholder="Nom de la tâche"
       />
-      <div className="flex justify-between">
-        <button
-          onClick={handleCancel}
-          className="px-4 py-2 rounded-md border border-gray-400 text-gray-600 hover:bg-gray-100 transition"
-        >
-          Annuler
-        </button>
-        <button
-          onClick={handleUpdate}
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          Enregistrer
-        </button>
-      </div>
+      <button
+        onClick={handleUpdate}
+        className="bg-emerald-500 text-white px-4 py-2 rounded hover:bg-emerald-600 transition"
+      >
+        Enregistrer
+      </button>
     </div>
   );
 }
