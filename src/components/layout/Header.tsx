@@ -1,4 +1,3 @@
-// layout/Header.tsx
 export default function Header() {
   return (
     <header className="bg-emerald-800 text-stone-100 p-4 shadow">

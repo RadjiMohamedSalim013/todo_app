@@ -1,4 +1,3 @@
-// layout/AppLayout.tsx
 import Header from "./Header";
 import Footer from "./Footer";
 
