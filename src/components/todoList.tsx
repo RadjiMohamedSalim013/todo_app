@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ITodo } from "@/interfaces/todo";
-import { addTodo, deleteTodo, getTodos, toggleTodo } from "@/geteways/todo";
+import {  deleteTodo, getTodos, toggleTodo } from "@/geteways/todo";
 import TodoItem from "@/components/todoItem";
 import DeleteModal from "@/components/DeleteModal";
 
@@ -15,10 +15,7 @@ export default function TodoList() {
     setTodos(getTodos());
   }, []);
 
-  const handleAddTodo = (title: string) => {
-    const newTodo = addTodo(title);
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
-  };
+
 
   const handleToggleTodo = (id: number) => {
     toggleTodo(id);
